@@ -2,7 +2,8 @@
 #define DATA_STORAGE_H
 
 
-void LOAD();
-void STORE();
+void LoadMem();
+void LoadValue();
+void Store();
 
 #endif

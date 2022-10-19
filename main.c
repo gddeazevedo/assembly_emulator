@@ -3,6 +3,8 @@
 
 
 
+
+
 int main(int argc, char** argv) {
     if (argc != 2) {
         fprintf(stderr, "Error! Command accepts only one parameter! ./assembly_emulator <bin_file>\n");
