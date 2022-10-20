@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "src/types.h"
+
+byte mem[256]; // variables
+Instruction program[256];
 
 
+// Registers
+byte pc = 0;
+byte acc;
+byte stat;
 
 
 int main(int argc, char** argv) {
@@ -11,11 +19,6 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    printf("%s\n", argv[1]);
-    unsigned int acc = 0;
-    printf("INT: %d bytes\n", sizeof(int));
-    printf("CHAR: %d bytes\n", sizeof(char));
-    printf("SHORT: %d bytes\n", sizeof(short));
-
+    printf("SHORT: %ld bytes\n", sizeof(short));
     return 0;
 }

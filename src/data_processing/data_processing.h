@@ -1,15 +1,17 @@
 #ifndef DATA_PROCESSING_H
 #define DATA_PROCESSING_H
 
-void Add(unsigned int* acc, unsigned int mem);
-void Sub(unsigned int* acc, unsigned int mem);
-void Mul(unsigned int* acc, unsigned int mem);
-void Div(unsigned int* acc, unsigned int mem);
-void Inc();
-void Dec();
+#include "../types.h"
 
-void And();
-void Or();
-void Not();
+void Add(byte* acc, byte value);
+void Sub(byte* acc, byte value);
+void Mul(byte* acc, byte value);
+void Div(byte* acc, byte value);
+void Inc(byte* acc);
+void Dec(byte* acc);
+
+void And(byte* acc, byte value);
+void Or(byte* acc, byte value);
+void Not(byte* acc);
 
 #endif
