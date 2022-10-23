@@ -2,6 +2,9 @@
 #include <stdlib.h>
 
 #include "src/types.h"
+#include "src/control/control.h"
+#include "src/data_processing/data_processing.h"
+#include "src/data_storage/data_storage.h"
 
 byte mem[256]; // variables
 Instruction program[256];
