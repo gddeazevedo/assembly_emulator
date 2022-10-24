@@ -1,3 +1,6 @@
+#ifndef TYPES_H
+#define TYPES_H
+
 typedef unsigned char byte;
 
 typedef struct {
@@ -27,3 +30,5 @@ enum Instructions {
     JLE   = 18,
     HLT   = 19
 };
+
+#endif
