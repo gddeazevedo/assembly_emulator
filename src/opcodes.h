@@ -1,5 +1,5 @@
-#ifndef OPCODE_H
-#define OPCODE_H
+#ifndef OPCODES_H
+#define OPCODES_H
 
 #define LOADm 0
 #define LOADv 1
