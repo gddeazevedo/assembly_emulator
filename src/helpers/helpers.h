@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "../stats_values.h"
 #include "../opcodes.h"
 #include "../types.h"
 #include "../control/control.h"

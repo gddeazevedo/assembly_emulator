@@ -24,7 +24,7 @@ void load_program(Instruction* program, char* file_name) {
 
 void run_program(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
     while (program[*pc].opcode != HLT) {
-        process_instructions(program, mem, acc, pc);
+        process_instructions(program, mem, acc, pc, stat);
         *pc += 1;
     }
 }
@@ -33,18 +33,42 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, 
     Instruction instruction = program[*pc];
 
     switch (instruction.opcode) {
-        case LOADm: Load(acc, mem[instruction.operand]); break;
-        case LOADv: Load(acc, instruction.operand); break;
-        case STORE: Store(mem, instruction.operand, *acc); break;
-        case ADD: Add(acc, mem[instruction.operand]); break;
-        case SUB: Sub(acc, mem[instruction.operand]); break;
-        case MUL: Mul(acc, mem[instruction.operand]); break;
-        case DIV: Div(acc, mem[instruction.operand]); break;
-        case INC: Inc(acc); break;
-        case DEC: Dec(acc); break;
-        case AND: And(acc, mem[instruction.operand]); break;
-        case OR: Or(acc, mem[instruction.operand]); break;
-        case NOT: Not(acc); break;
+        case LOADm:
+            Load(acc, mem[instruction.operand], stat);
+            break;
+        case LOADv:
+            Load(acc, instruction.operand, stat);
+            break;
+        case STORE:
+            Store(mem, instruction.operand, *acc);
+            break;
+        case ADD:
+            Add(acc, mem[instruction.operand]);
+            break;
+        case SUB:
+            Sub(acc, mem[instruction.operand]);
+            break;
+        case MUL:
+            Mul(acc, mem[instruction.operand]);
+            break;
+        case DIV:
+            Div(acc, mem[instruction.operand]);
+            break;
+        case INC:
+            Inc(acc);
+            break;
+        case DEC:
+            Dec(acc);
+            break;
+        case AND:
+            And(acc, mem[instruction.operand]);
+            break;
+        case OR:
+            Or(acc, mem[instruction.operand]);
+            break;
+        case NOT:
+            Not(acc);
+            break;
         case JMP: break;
         case JZ: break;
         case JNZ: break;
