@@ -1,19 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "src/types.h"
-// #include "src/control/control.h"
-// #include "src/data_processing/data_processing.h"
-// #include "src/data_storage/data_storage.h"
-
-byte mem[256]; // variables
-Instruction program[256];
-
-
-// Registers
-byte pc = 0;
-byte acc;
-byte stat;
+#include "src/helpers/helpers.h"
 
 
 int main(int argc, char** argv) {
@@ -22,15 +7,27 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
+    byte mem[256]; // variables
+    Instruction program[256];
+
+    // Registers
+    byte pc   = 0; // program counter
+    byte acc  = 0; // acumulador
+    byte stat = 0; // status
+
+
     char* file_name = argv[1];
     FILE* file = fopen(file_name, "rb");
 
-    if (file == NULL) {
-        fprintf(stderr, "Error in opening file!\n");
-        exit(1);
+    store_file_in_program(program, file);
+
+    while (program[pc].opcode != HLT) {
+        process_instructions(program, mem, &acc, pc);
+        pc++;
     }
 
     fclose(file);
-    
+
+    printf("ACC: %d\n", acc);
     return 0;
 }
