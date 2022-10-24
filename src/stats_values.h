@@ -1,0 +1,8 @@
+#ifndef STATS_VALUES_H
+#define STATS_VALUES_H
+
+#define OVERFLOW 0b00000100
+#define CARRY    0b00000010
+#define ZERO_ACC 0b00000001
+
+#endif
