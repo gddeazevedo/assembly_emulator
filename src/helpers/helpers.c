@@ -1,6 +1,33 @@
 #include "helpers.h"
 
 
+void load_program(Instruction* program, char* file_name) {
+    system("cd ./SP1Assembler && make");
+    system("cd ..");
+    system("./SP1Assembler/sp1a prog.asm -o prog.bin");
+
+
+    FILE* file = fopen(file_name, "rb");
+
+    if (file == NULL) {
+        fprintf(stderr, "Error in opening file!\n");
+        exit(1);
+    }
+
+    byte buffer[2];
+    int index = 0;
+
+    while (!feof(file)) {
+        fread(buffer, sizeof(byte), 2, file);
+        program[index].opcode = buffer[0];
+        program[index].operand = buffer[1];
+        index++;
+    }
+
+    fclose(file);
+}
+
+
 void process_instructions(Instruction* program, byte* mem, byte* acc, byte pc) {
     Instruction instruction = program[pc];
 
@@ -27,26 +54,4 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte pc) {
         case HLT: break;
         default: break;
     }
-}
-
-
-void load_program(Instruction* program, char* file_name) {
-    FILE* file = fopen(file_name, "rb");
-
-    if (file == NULL) {
-        fprintf(stderr, "Error in opening file!\n");
-        exit(1);
-    }
-
-    byte buffer[2];
-    int index = 0;
-
-    while (!feof(file)) {
-        fread(buffer, sizeof(byte), 2, file);
-        program[index].opcode = buffer[0];
-        program[index].operand = buffer[1];
-        index++;
-    }
-
-    fclose(file);
 }
