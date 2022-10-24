@@ -2,3 +2,5 @@
 *.gch
 .vscode
 sp1_run
+*.bin
+*.sp1
