@@ -2,11 +2,6 @@
 
 
 void load_program(Instruction* program, char* file_name) {
-    system("cd ./SP1Assembler && make");
-    system("cd ..");
-    system("./SP1Assembler/sp1a prog.asm -o prog.bin");
-
-
     FILE* file = fopen(file_name, "rb");
 
     if (file == NULL) {
