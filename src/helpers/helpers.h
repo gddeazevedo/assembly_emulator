@@ -10,6 +10,6 @@
 #include "../data_storage/data_storage.h"
 
 void process_instructions(Instruction* program, byte* mem, byte* acc, byte pc);
-void store_file_in_program(Instruction* program, FILE* file);
+void load_program(Instruction* program, char* file_name);
 
 #endif

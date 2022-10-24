@@ -30,7 +30,9 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte pc) {
 }
 
 
-void store_file_in_program(Instruction* program, FILE* file) {
+void load_program(Instruction* program, char* file_name) {
+    FILE* file = fopen(file_name, "rb");
+
     if (file == NULL) {
         fprintf(stderr, "Error in opening file!\n");
         exit(1);
@@ -45,4 +47,6 @@ void store_file_in_program(Instruction* program, FILE* file) {
         program[index].operand = buffer[1];
         index++;
     }
+
+    fclose(file);
 }

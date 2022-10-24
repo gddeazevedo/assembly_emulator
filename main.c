@@ -15,18 +15,12 @@ int main(int argc, char** argv) {
     byte acc  = 0; // acumulador
     byte stat = 0; // status
 
-
-    char* file_name = argv[1];
-    FILE* file = fopen(file_name, "rb");
-
-    store_file_in_program(program, file);
+    load_program(program, argv[1]);
 
     while (program[pc].opcode != HLT) {
         process_instructions(program, mem, &acc, pc);
         pc++;
     }
-
-    fclose(file);
 
     printf("ACC: %d\n", acc);
     return 0;
