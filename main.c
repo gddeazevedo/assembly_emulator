@@ -20,6 +20,5 @@ int main(int argc, char** argv) {
 
     printf("ACC: %d\n", acc);
     printf("STAT: %d\n", stat);
-
     return 0;
 }

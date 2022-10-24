@@ -28,22 +28,48 @@ void run_program(Instruction* program, byte* mem, byte* acc, byte* pc, byte* sta
     }
 }
 
+
 void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
     Instruction instruction = program[*pc];
+    process_control_instructions(instruction, mem, acc, pc, stat);
+    process_data_processing_instructions(instruction, mem, acc, pc, stat);
+    process_data_storage_instructions(instruction, mem, acc, pc, stat);
+}
 
+
+void process_control_instructions(Instruction instruction, byte* mem, byte* acc, byte* pc, byte* stat) {
     switch (instruction.opcode) {
-        case LOADm:
-            Load(acc, mem[instruction.operand], stat);
-            *pc += 1;
+        case JMP:
+            Jmp(pc, instruction.operand, stat);
             break;
-        case LOADv:
-            Load(acc, instruction.operand, stat);
-            *pc += 1;
+        case JZ:
+            Jz(pc, instruction.operand, *acc, stat);
             break;
-        case STORE:
-            Store(mem, instruction.operand, *acc);
-            *pc += 1;
+        case JNZ:
+            Jnz(pc, instruction.operand, *acc, stat);
             break;
+        case JG:
+            Jg(pc, instruction.operand, *acc,  stat);
+            break;
+        case JL:
+            Jl(pc, instruction.operand, *acc, stat);
+            break;
+        case JGE: 
+            Jge(pc, instruction.operand, *acc, stat);
+            break;
+        case JLE:
+            Jle(pc, instruction.operand, *acc, stat);
+            break;
+        case HLT:
+            Hlt(acc, stat);
+            break;
+        default:
+            break;
+    }
+}
+
+void process_data_processing_instructions(Instruction instruction, byte* mem, byte* acc, byte* pc, byte* stat) {
+    switch (instruction.opcode) {
         case ADD:
             Add(acc, mem[instruction.operand], stat);
             *pc += 1;
@@ -80,14 +106,26 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, 
             Not(acc, stat);
             *pc += 1;
             break;
-        case JMP: break;
-        case JZ: break;
-        case JNZ: break;
-        case JG: break;
-        case JL: break;
-        case JGE: break;
-        case JLE: break;
-        case HLT: break;
-        default: break;
+        default:
+            break;
+    }
+}
+
+void process_data_storage_instructions(Instruction instruction, byte* mem, byte* acc, byte* pc, byte* stat) {
+    switch (instruction.opcode) {
+        case LOADm:
+            Load(acc, mem[instruction.operand], stat);
+            *pc += 1;
+            break;
+        case LOADv:
+            Load(acc, instruction.operand, stat);
+            *pc += 1;
+            break;
+        case STORE:
+            Store(mem, instruction.operand, *acc);
+            *pc += 1;
+            break;
+        default:
+            break;
     }
 }
