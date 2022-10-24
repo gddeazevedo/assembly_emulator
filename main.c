@@ -11,17 +11,14 @@ int main(int argc, char** argv) {
     Instruction program[256];
 
     // Registers
-    byte pc   = 0; // program counter
     byte acc  = 0; // acumulador
+    byte pc   = 0; // program counter
     byte stat = 0; // status
 
     load_program(program, argv[1]);
-
-    while (program[pc].opcode != HLT) {
-        process_instructions(program, mem, &acc, pc);
-        pc++;
-    }
+    run_program(program, mem, &acc, &pc, &stat);
 
     printf("ACC: %d\n", acc);
+
     return 0;
 }

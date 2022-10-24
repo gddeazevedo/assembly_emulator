@@ -22,9 +22,15 @@ void load_program(Instruction* program, char* file_name) {
     fclose(file);
 }
 
+void run_program(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
+    while (program[*pc].opcode != HLT) {
+        process_instructions(program, mem, acc, pc);
+        *pc += 1;
+    }
+}
 
-void process_instructions(Instruction* program, byte* mem, byte* acc, byte pc) {
-    Instruction instruction = program[pc];
+void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
+    Instruction instruction = program[*pc];
 
     switch (instruction.opcode) {
         case LOADm: Load(acc, mem[instruction.operand]); break;
