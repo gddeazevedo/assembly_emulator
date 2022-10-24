@@ -2,6 +2,7 @@
 #define DATA_PROCESSING_H
 
 #include "../types.h"
+#include <stdio.h>
 
 void Add(byte* acc, byte value);
 void Sub(byte* acc, byte value);
