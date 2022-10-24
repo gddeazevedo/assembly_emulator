@@ -25,7 +25,6 @@ void load_program(Instruction* program, char* file_name) {
 void run_program(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
     while (program[*pc].opcode != HLT) {
         process_instructions(program, mem, acc, pc, stat);
-        *pc += 1;
     }
 }
 
@@ -35,39 +34,51 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, 
     switch (instruction.opcode) {
         case LOADm:
             Load(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case LOADv:
             Load(acc, instruction.operand, stat);
+            *pc += 1;
             break;
         case STORE:
             Store(mem, instruction.operand, *acc);
+            *pc += 1;
             break;
         case ADD:
-            Add(acc, mem[instruction.operand]);
+            Add(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case SUB:
-            Sub(acc, mem[instruction.operand]);
+            Sub(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case MUL:
-            Mul(acc, mem[instruction.operand]);
+            Mul(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case DIV:
-            Div(acc, mem[instruction.operand]);
+            Div(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case INC:
-            Inc(acc);
+            Inc(acc, stat);
+            *pc += 1;
             break;
         case DEC:
-            Dec(acc);
+            Dec(acc, stat);
+            *pc += 1;
             break;
         case AND:
-            And(acc, mem[instruction.operand]);
+            And(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case OR:
-            Or(acc, mem[instruction.operand]);
+            Or(acc, mem[instruction.operand], stat);
+            *pc += 1;
             break;
         case NOT:
-            Not(acc);
+            Not(acc, stat);
+            *pc += 1;
             break;
         case JMP: break;
         case JZ: break;

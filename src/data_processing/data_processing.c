@@ -1,37 +1,97 @@
 #include "data_processing.h"
 
-void Add(byte* acc, byte value) {
+void Add(byte* acc, byte value, byte* stat) {
     *acc += value;
+
+    if (*acc > 255) {
+        *stat = CARRY;
+    }
+
+    if (*acc < 0) {
+        *stat = OVERFLOW;
+    }
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Sub(byte* acc, byte value) {
+void Sub(byte* acc, byte value, byte* stat) {
     *acc -= value;
+
+    if (*acc > 255) {
+        *stat = CARRY;
+    }
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Mul(byte* acc, byte value) {
+void Mul(byte* acc, byte value, byte* stat) {
     *acc *= value;
+
+    if (*acc > 255) {
+        *stat = OVERFLOW;
+    }
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Div(byte* acc, byte value) {
+void Div(byte* acc, byte value, byte* stat) {
     *acc /= value;
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Inc(byte* acc) {
+void Inc(byte* acc, byte* stat) {
     *acc += 1;
+
+    if (*acc < 0) {
+        *stat = OVERFLOW;
+    }
+
+    if (*acc > 255) {
+        *stat = CARRY;
+    }
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Dec(byte* acc) {
+void Dec(byte* acc, byte* stat) {
     *acc -= 1;
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void And(byte* acc, byte value) {
+void And(byte* acc, byte value, byte* stat) {
     *acc &= value;
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Or(byte* acc, byte value) {
+void Or(byte* acc, byte value, byte* stat) {
     *acc |= value;
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
 
-void Not(byte* acc) {
+void Not(byte* acc, byte* stat) {
     *acc = ~*acc;
+
+    if (*acc == 0) {
+        *stat = ZERO_ACC;
+    }
 }
