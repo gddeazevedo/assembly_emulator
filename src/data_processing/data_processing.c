@@ -25,11 +25,11 @@ void Dec(byte* acc) {
 }
 
 void And(byte* acc, byte value) {
-    *acc = *acc & value;
+    *acc &= value;
 }
 
 void Or(byte* acc, byte value) {
-    *acc = *acc | value;
+    *acc |= value;
 }
 
 void Not(byte* acc) {
