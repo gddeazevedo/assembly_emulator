@@ -1,12 +1,12 @@
 #include "control.h"
 
 void Jmp(byte* pc, byte label, byte* stat) {
-    *pc = label;
+    *pc = label / 2;
 }
 
 void Jz(byte* pc, byte label, byte acc, byte* stat) {
     if (acc == 0) {
-        *pc = label;
+        *pc = label / 2;
     } else {
         *pc += 1;
     }
@@ -14,7 +14,7 @@ void Jz(byte* pc, byte label, byte acc, byte* stat) {
 
 void Jnz(byte* pc, byte label, byte acc, byte* stat) {
     if (acc != 0) {
-        *pc = label;
+        *pc = label / 2;
     } else {
         *pc += 1;
     }
@@ -22,7 +22,7 @@ void Jnz(byte* pc, byte label, byte acc, byte* stat) {
 
 void Jg(byte* pc, byte label, byte acc, byte* stat) {
     if (acc > 0) {
-        *pc = label;
+        *pc = label / 2;
     } else {
         *pc += 1;
     }
@@ -30,7 +30,7 @@ void Jg(byte* pc, byte label, byte acc, byte* stat) {
 
 void Jl(byte* pc, byte label, byte acc, byte* stat) {
     if (acc < 0) {
-        *pc = label;
+        *pc = label / 2;
     } else {
         *pc += 1;
     }
@@ -38,7 +38,7 @@ void Jl(byte* pc, byte label, byte acc, byte* stat) {
 
 void Jge(byte* pc, byte label, byte acc, byte* stat) {
     if (acc >= 0) {
-        *pc = label;
+        *pc = label / 2;
     } else {
         *pc += 1;
     }
@@ -46,7 +46,7 @@ void Jge(byte* pc, byte label, byte acc, byte* stat) {
 
 void Jle(byte* pc, byte label, byte acc, byte* stat) {
     if (acc <= 0) {
-        *pc = label;
+        *pc = label / 2;
     } else {
         *pc += 1;
     }
