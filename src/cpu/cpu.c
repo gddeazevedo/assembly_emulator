@@ -1,4 +1,4 @@
-#include "helpers.h"
+#include "cpu.h"
 
 
 void load_program(Instruction* program, char* file_name) {
