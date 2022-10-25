@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     // Registers
     byte acc  = 0; // acumulador
     byte pc   = 0; // program counter
-    byte stat = ZERO_ACC; // status
+    byte stat = 0; // status
 
     load_program(program, argv[1]);
     run_program(program, mem, &acc, &pc, &stat);
