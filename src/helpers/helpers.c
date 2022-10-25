@@ -30,7 +30,7 @@ void run_program(Instruction* program, byte* mem, byte* acc, byte* pc, byte* sta
 
 void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
     Instruction instruction = program[*pc];
-    
+
     switch (instruction.opcode) {
         /* DATA STORAGE */
         case LOADm:
