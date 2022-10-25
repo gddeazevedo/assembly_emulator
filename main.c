@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     Instruction program[256];
 
     // Registers
-    byte acc  = 0; // acumulador
+    byte acc  = 0; // accumulator
     byte pc   = 0; // program counter
     byte stat = 0; // status
 
