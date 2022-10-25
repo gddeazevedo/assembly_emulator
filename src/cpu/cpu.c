@@ -33,11 +33,11 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, 
 
     switch (instruction.opcode) {
         /* DATA STORAGE */
-        case LOADm:
+        case LOAD_MEM:
             Load(acc, mem[instruction.operand], stat);
             *pc += 1;
             break;
-        case LOADv:
+        case LOAD_VAL:
             Load(acc, instruction.operand, stat);
             *pc += 1;
             break;

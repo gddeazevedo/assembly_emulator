@@ -1,8 +1,8 @@
 #ifndef OPCODES_H
 #define OPCODES_H
 
-#define LOADm 0
-#define LOADv 1
+#define LOAD_MEM 0
+#define LOAD_VAL 1
 #define STORE 2
 #define ADD   3
 #define SUB   4
