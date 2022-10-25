@@ -83,6 +83,9 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, 
             Not(acc, stat);
             *pc += 1;
             break;
+
+
+        /* Control */
         case JMP:
             Jmp(pc, instruction.operand, stat);
             break;
