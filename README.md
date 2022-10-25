@@ -1,5 +1,7 @@
 # Simple Processor 1 Emulator
 
+## Authors: Gabriel Dias e Nícolas Henriques
+
 > Simple processor 1 emulator emulates an 8 bits architecture processor with three registers
 > 
 > Its Assembly type is the accumulator type
