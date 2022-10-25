@@ -23,11 +23,10 @@ void load_program(Instruction* program, char* file_name) {
 }
 
 void run_program(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
-    while (program[*pc].opcode != HLT) {
+    while (1) {
         process_instructions(program, mem, acc, pc, stat);
     }
 }
-
 
 void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, byte* stat) {
     Instruction instruction = program[*pc];
@@ -35,7 +34,6 @@ void process_instructions(Instruction* program, byte* mem, byte* acc, byte* pc, 
     process_data_processing_instructions(instruction, mem, acc, pc, stat);
     process_data_storage_instructions(instruction, mem, acc, pc, stat);
 }
-
 
 void process_control_instructions(Instruction instruction, byte* mem, byte* acc, byte* pc, byte* stat) {
     switch (instruction.opcode) {
