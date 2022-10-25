@@ -1,11 +1,12 @@
 #include "data_processing.h"
 
 void Add(byte* acc, byte value, byte* stat) {
-    *acc += value;
 
-    if (*acc > 255) {
+    if ((int) (*acc + value) > 255) {
         *stat = CARRY;
     }
+
+    *acc += value;
 
     if (*acc < 0) {
         *stat = OVERFLOW;
@@ -29,11 +30,12 @@ void Sub(byte* acc, byte value, byte* stat) {
 }
 
 void Mul(byte* acc, byte value, byte* stat) {
-    *acc *= value;
 
-    if (*acc > 255) {
+    if ((int)(*acc * value) > 255) {
         *stat = OVERFLOW;
     }
+
+    *acc *= value;
 
     if (*acc == 0) {
         *stat = ZERO_ACC;
