@@ -2,45 +2,37 @@
 
 void Add(byte* acc, byte value, byte* stat) {
     if ((int) (*acc + value) > 255) {
-        *stat = CARRY;
-    }
-
-    if ((int)(*acc + value) < 0) {
-        *stat = OVERFLOW;
+        *stat |= CARRY;
     }
 
     *acc += value;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
 void Sub(byte* acc, byte value, byte* stat) {
-    if ((int)(*acc - value) > 255) {
-        *stat = CARRY;
-    }
-
     if ((int)(*acc - value) < 0) {
-        *stat = OVERFLOW;
+        *stat |= CARRY;
     }
 
     *acc -= value;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
 void Mul(byte* acc, byte value, byte* stat) {
     if ((int)(*acc * value) > 255) {
-        *stat = OVERFLOW;
+        *stat |= OVERFLOW;
     }
 
     *acc *= value;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
@@ -53,34 +45,26 @@ void Div(byte* acc, byte value, byte* stat) {
 }
 
 void Inc(byte* acc, byte* stat) {
-    if ((int)(*acc + 1) < 0) {
-        *stat = OVERFLOW;
-    }
-
     if ((int)(*acc + 1) > 255) {
-        *stat = CARRY;
+        *stat |= CARRY;
     }
 
     *acc += 1;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
 void Dec(byte* acc, byte* stat) {
     if ((int)(*acc - 1) < 0) {
-        *stat = OVERFLOW;
-    }
-
-    if ((int)(*acc - 1) > 255) {
-        *stat = CARRY;
+        *stat |= CARRY;
     }
 
     *acc -= 1;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
@@ -88,7 +72,7 @@ void And(byte* acc, byte value, byte* stat) {
     *acc &= value;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
@@ -96,7 +80,7 @@ void Or(byte* acc, byte value, byte* stat) {
     *acc |= value;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
 
@@ -104,6 +88,6 @@ void Not(byte* acc, byte* stat) {
     *acc = ~*acc;
 
     if (*acc == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 }
