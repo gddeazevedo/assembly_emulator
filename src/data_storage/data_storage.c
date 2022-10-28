@@ -3,7 +3,7 @@
 
 void Load(byte* acc, byte value, byte* stat) {
     if (value == 0) {
-        *stat = ZERO_ACC;
+        *stat |= ZERO_ACC;
     }
 
     *acc = value;
