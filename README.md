@@ -1,6 +1,6 @@
 # Simple Processor 1 Emulator
 
-## Authors: Gabriel Dias e Nícolas Henriques
+## Authors: Gabriel Dias
 
 > Simple processor 1 emulator emulates an 8 bits architecture processor with three registers
 > 
